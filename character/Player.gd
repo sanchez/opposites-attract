@@ -43,8 +43,8 @@ func apply_friction(input_vector):
 
 func _physics_process(delta):
 	var input_vector = get_input()
-	apply_friction(input_vector)
 	apply_movement(input_vector, delta)
+	apply_friction(input_vector)
 	jump_check()
 	apply_gravity(delta)
 	
