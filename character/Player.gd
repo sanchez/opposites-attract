@@ -1,9 +1,9 @@
 extends KinematicBody2D
 
-export (float) var ACCELERATION = 512
-export (float) var MAX_MOVE_SPEED = 90
-export (float) var GRAVITY = 200
-export (float) var JUMP_FORCE = 128
+export (float) var ACCELERATION = 512.0
+export (float) var MAX_MOVE_SPEED = 90.0
+export (float) var GRAVITY = 200.0
+export (float) var JUMP_FORCE = 128.0
 export (float) var FRICTION = 0.25
 
 var motion := Vector2.ZERO
