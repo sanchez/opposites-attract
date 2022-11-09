@@ -3,16 +3,14 @@
 [ext_resource path="res://character/penguin.png" type="Texture" id=1]
 [ext_resource path="res://character/Player.gd" type="Script" id=2]
 [ext_resource path="res://components/magged/Magged.tscn" type="PackedScene" id=3]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14, 15.5 )
+[ext_resource path="res://character/shape.tres" type="Shape2D" id=4]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 0.5 )
-shape = SubResource( 1 )
+shape = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -23,3 +21,13 @@ process_mode = 0
 smoothing_enabled = true
 
 [node name="Magged" parent="." instance=ExtResource( 3 )]
+
+[node name="MagCollider" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MagCollider"]
+position = Vector2( 0, 0.5 )
+shape = ExtResource( 4 )
+
+[connection signal="area_entered" from="MagCollider" to="." method="_on_MagCollider_area_entered"]

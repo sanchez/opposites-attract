@@ -7,6 +7,7 @@ export (float) var JUMP_FORCE = 128.0
 export (float) var FRICTION = 0.25
 
 var motion := Vector2.ZERO
+var last_checkpoint := Vector2.ZERO
 
 
 func get_input():
@@ -42,6 +43,9 @@ func apply_friction(input_vector):
 
 
 func _physics_process(delta):
+	if global_position.y > 200:
+		global_position = last_checkpoint
+	
 	var input_vector = get_input()
 	apply_movement(input_vector, delta)
 	apply_friction(input_vector)
@@ -49,3 +53,7 @@ func _physics_process(delta):
 	apply_gravity(delta)
 	
 	motion = move_and_slide(motion, Vector2.UP, true)
+
+
+func _on_MagCollider_area_entered(area):
+	last_checkpoint = area.global_position
