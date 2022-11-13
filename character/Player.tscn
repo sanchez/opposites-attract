@@ -30,4 +30,19 @@ collision_mask = 4
 position = Vector2( 0, 0.5 )
 shape = ExtResource( 4 )
 
+[node name="RayLeft" type="RayCast2D" parent="."]
+position = Vector2( -14, 16 )
+enabled = true
+cast_to = Vector2( 0, 3 )
+
+[node name="RayRight" type="RayCast2D" parent="."]
+position = Vector2( 14, 16 )
+enabled = true
+cast_to = Vector2( 0, 3 )
+
+[node name="RayMid" type="RayCast2D" parent="."]
+position = Vector2( 0, 16 )
+enabled = true
+cast_to = Vector2( 0, 3 )
+
 [connection signal="area_entered" from="MagCollider" to="." method="_on_MagCollider_area_entered"]

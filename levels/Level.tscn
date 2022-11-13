@@ -291,3 +291,7 @@ tile_data = PoolIntArray( -131060, 0, 0, -131059, 0, 2, -131057, 0, 3, -131056, 
 
 [node name="Magnet" parent="." instance=ExtResource( 2 )]
 position = Vector2( 838, 41 )
+
+[node name="Magnet2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 724, -83 )
+CHARGE = -1
