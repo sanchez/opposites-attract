@@ -45,4 +45,7 @@ position = Vector2( 0, 16 )
 enabled = true
 cast_to = Vector2( 0, 3 )
 
+[node name="ChargeIcon" type="Sprite" parent="."]
+position = Vector2( 0, -25 )
+
 [connection signal="area_entered" from="MagCollider" to="." method="_on_MagCollider_area_entered"]

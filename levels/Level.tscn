@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://levels/level-tilemap.png" type="Texture" id=1]
 [ext_resource path="res://components/magnet/Magnet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/checkpoint/CheckPoint.tscn" type="PackedScene" id=3]
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 9, 9, 32, 9, 32, 32, 9, 32 )
@@ -287,11 +288,108 @@ points = PoolVector2Array( 0, 8, 9, 8, 9, 0, 23, 0, 23, 24, 0, 24 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -131060, 0, 0, -131059, 0, 2, -131057, 0, 3, -131056, 0, 5, -131054, 0, 0, -131053, 0, 1, -131052, 0, 2, -131045, 0, 0, -131044, 0, 1, -131043, 0, 2, -65526, 0, 0, -65525, 0, 1, -65524, 0, 196613, -65523, 0, 65538, -65518, 0, 65536, -65517, 0, 65537, -65516, 0, 65538, -65509, 0, 65536, -65508, 0, 65537, -65507, 0, 65538, 65532, 0, 0, 65533, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 2, 6, 0, 0, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 196613, 11, 0, 65537, 12, 0, 65537, 13, 0, 65538, 18, 0, 65536, 19, 0, 65537, 20, 0, 65538, 27, 0, 65536, 28, 0, 65537, 29, 0, 65538, 131068, 0, 131072, 131069, 0, 131073, 131070, 0, 131073, 131071, 0, 131073, 65536, 0, 131073, 65537, 0, 131073, 65538, 0, 131073, 65539, 0, 131074, 65542, 0, 131072, 65543, 0, 131073, 65544, 0, 131073, 65545, 0, 131073, 65546, 0, 131073, 65547, 0, 131073, 65548, 0, 131073, 65549, 0, 131074, 65554, 0, 65536, 65555, 0, 65537, 65556, 0, 196612, 65557, 0, 1, 65558, 0, 1, 65559, 0, 1, 65560, 0, 1, 65561, 0, 1, 65562, 0, 1, 65563, 0, 196613, 65564, 0, 65537, 65565, 0, 65538, 131090, 0, 131072, 131091, 0, 131073, 131092, 0, 131073, 131093, 0, 131073, 131094, 0, 131073, 131095, 0, 131073, 131096, 0, 131073, 131097, 0, 131073, 131098, 0, 131073, 131099, 0, 131073, 131100, 0, 131073, 131101, 0, 131074 )
+tile_data = PoolIntArray( -1507345, 0, 0, -1507344, 0, 1, -1507343, 0, 1, -1507342, 0, 1, -1507341, 0, 1, -1507340, 0, 1, -1507339, 0, 1, -1507338, 0, 1, -1507337, 0, 1, -1507336, 0, 1, -1507335, 0, 1, -1507334, 0, 1, -1507333, 0, 1, -1507332, 0, 1, -1507331, 0, 1, -1507330, 0, 1, -1507329, 0, 1, -1572864, 0, 1, -1572863, 0, 1, -1572862, 0, 1, -1572861, 0, 1, -1572860, 0, 1, -1572859, 0, 2, -1441809, 0, 131072, -1441808, 0, 131073, -1441807, 0, 131073, -1441806, 0, 131073, -1441805, 0, 131073, -1441804, 0, 131073, -1441803, 0, 131073, -1441802, 0, 131073, -1441801, 0, 131073, -1441800, 0, 131073, -1441799, 0, 131073, -1441798, 0, 131073, -1441797, 0, 131073, -1441796, 0, 131073, -1441795, 0, 131073, -1441794, 0, 131073, -1441793, 0, 131073, -1507328, 0, 131073, -1507327, 0, 131073, -1507326, 0, 131073, -1507325, 0, 131073, -1507324, 0, 131077, -1507323, 0, 65538, -1441788, 0, 65536, -1441787, 0, 65538, -1376252, 0, 65536, -1376251, 0, 65538, -1245201, 0, 0, -1245200, 0, 1, -1245199, 0, 1, -1245198, 0, 2, -1245187, 0, 0, -1245186, 0, 1, -1245185, 0, 1, -1310720, 0, 1, -1310719, 0, 1, -1310718, 0, 2, -1310716, 0, 65536, -1310715, 0, 65538, -1179665, 0, 131072, -1179664, 0, 131073, -1179663, 0, 131073, -1179662, 0, 131074, -1179651, 0, 131072, -1179650, 0, 131073, -1179649, 0, 131073, -1245184, 0, 131073, -1245183, 0, 131077, -1245182, 0, 65538, -1245180, 0, 65536, -1245179, 0, 65538, -1179647, 0, 65536, -1179646, 0, 65538, -1179644, 0, 65536, -1179643, 0, 65538, -1114111, 0, 65536, -1114110, 0, 65538, -1114108, 0, 65536, -1114107, 0, 65538, -1048575, 0, 65536, -1048574, 0, 65538, -1048572, 0, 65536, -1048571, 0, 65538, -983039, 0, 65536, -983038, 0, 65538, -983036, 0, 65536, -983035, 0, 65538, -917503, 0, 65536, -917502, 0, 65538, -917500, 0, 65536, -917499, 0, 65538, -851967, 0, 65536, -851966, 0, 65538, -851964, 0, 65536, -851963, 0, 65538, -786431, 0, 65536, -786430, 0, 65538, -786428, 0, 65536, -786427, 0, 65538, -720895, 0, 65536, -720894, 0, 65538, -720892, 0, 131072, -720891, 0, 131074, -655359, 0, 65536, -655358, 0, 65538, -589823, 0, 65536, -589822, 0, 65538, -524287, 0, 65536, -524286, 0, 65538, -524284, 0, 0, -524283, 0, 1, -524282, 0, 2, -524279, 0, 3, -524278, 0, 4, -524277, 0, 5, -458751, 0, 65536, -458750, 0, 196612, -458749, 0, 1, -458748, 0, 196613, -458747, 0, 65537, -458746, 0, 65538, -458733, 0, 3, -458732, 0, 4, -458731, 0, 5, -458725, 0, 65539, -393215, 0, 131072, -393214, 0, 131073, -393213, 0, 131073, -393212, 0, 131073, -393211, 0, 131073, -393210, 0, 131074, -393192, 0, 131078, -393191, 0, 4, -393190, 0, 4, -393189, 0, 196615, -327656, 0, 131075, -262120, 0, 131075, -196584, 0, 131075, -131060, 0, 0, -131059, 0, 2, -131057, 0, 3, -131056, 0, 5, -131054, 0, 3, -131053, 0, 4, -131052, 0, 4, -131051, 0, 4, -131050, 0, 4, -131049, 0, 4, -131048, 0, 196615, -65526, 0, 0, -65525, 0, 1, -65524, 0, 196613, -65523, 0, 65538, 65532, 0, 0, 65533, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 1, 2, 0, 1, 3, 0, 2, 6, 0, 0, 7, 0, 1, 8, 0, 1, 9, 0, 1, 10, 0, 196613, 11, 0, 65537, 12, 0, 65537, 13, 0, 65538, 131068, 0, 131072, 131069, 0, 131073, 131070, 0, 131073, 131071, 0, 131073, 65536, 0, 131073, 65537, 0, 131073, 65538, 0, 131073, 65539, 0, 131074, 65542, 0, 131072, 65543, 0, 131073, 65544, 0, 131073, 65545, 0, 131073, 65546, 0, 131073, 65547, 0, 131073, 65548, 0, 131073, 65549, 0, 131074 )
 
 [node name="Magnet" parent="." instance=ExtResource( 2 )]
-position = Vector2( 838, 41 )
+position = Vector2( 753, -56 )
 
 [node name="Magnet2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 724, -83 )
+position = Vector2( 586, -188 )
 CHARGE = -1
+
+[node name="Magnet3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 527, -196 )
+CHARGE = -1
+
+[node name="Magnet4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 470, -202 )
+CHARGE = -1
+
+[node name="Magnet8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 412, -212 )
+CHARGE = -1
+
+[node name="CheckPoint" parent="." instance=ExtResource( 3 )]
+position = Vector2( 417, -85 )
+
+[node name="CheckPoint2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 799, -214 )
+
+[node name="MagLauncher" type="Node2D" parent="."]
+position = Vector2( 81, -185 )
+
+[node name="Magnet5" parent="MagLauncher" instance=ExtResource( 2 )]
+CHARGE = -1
+
+[node name="Magnet11" parent="MagLauncher" instance=ExtResource( 2 )]
+CHARGE = -1
+
+[node name="Magnet12" parent="MagLauncher" instance=ExtResource( 2 )]
+CHARGE = -1
+
+[node name="Magnet15" parent="MagLauncher" instance=ExtResource( 2 )]
+CHARGE = -1
+
+[node name="Magnet6" parent="MagLauncher" instance=ExtResource( 2 )]
+position = Vector2( 31, 0 )
+CHARGE = -1
+
+[node name="Magnet10" parent="MagLauncher" instance=ExtResource( 2 )]
+position = Vector2( 31, 0 )
+CHARGE = -1
+
+[node name="Magnet13" parent="MagLauncher" instance=ExtResource( 2 )]
+position = Vector2( 31, 0 )
+CHARGE = -1
+
+[node name="Magnet16" parent="MagLauncher" instance=ExtResource( 2 )]
+position = Vector2( 31, 0 )
+CHARGE = -1
+
+[node name="Magnet7" parent="MagLauncher" instance=ExtResource( 2 )]
+position = Vector2( 62, 0 )
+CHARGE = -1
+
+[node name="Magnet9" parent="MagLauncher" instance=ExtResource( 2 )]
+position = Vector2( 62, 0 )
+CHARGE = -1
+
+[node name="Magnet14" parent="MagLauncher" instance=ExtResource( 2 )]
+position = Vector2( 62, 0 )
+CHARGE = -1
+
+[node name="Magnet17" parent="MagLauncher" instance=ExtResource( 2 )]
+position = Vector2( 62, 0 )
+CHARGE = -1
+
+[node name="CheckPoint3" parent="MagLauncher" instance=ExtResource( 3 )]
+position = Vector2( -19, -474 )
+
+[node name="Roof Mags" type="Node2D" parent="."]
+
+[node name="Magnet" parent="Roof Mags" instance=ExtResource( 2 )]
+position = Vector2( -125, -728 )
+
+[node name="Magnet2" parent="Roof Mags" instance=ExtResource( 2 )]
+position = Vector2( -176, -728 )
+
+[node name="Magnet3" parent="Roof Mags" instance=ExtResource( 2 )]
+position = Vector2( -228, -728 )
+
+[node name="Magnet4" parent="Roof Mags" instance=ExtResource( 2 )]
+position = Vector2( -278, -728 )
+
+[node name="Magnet5" parent="Roof Mags" instance=ExtResource( 2 )]
+position = Vector2( -329, -728 )
+
+[node name="Magnet6" parent="Roof Mags" instance=ExtResource( 2 )]
+position = Vector2( -381, -728 )
+
+[node name="Magnet7" parent="Roof Mags" instance=ExtResource( 2 )]
+position = Vector2( -435, -728 )
+
+[node name="Magnet8" parent="Roof Mags" instance=ExtResource( 2 )]
+position = Vector2( -486, -728 )
+
+[node name="CheckPoint" parent="Roof Mags" instance=ExtResource( 3 )]
+position = Vector2( -512, -662 )

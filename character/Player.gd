@@ -1,5 +1,8 @@
 extends KinematicBody2D
 
+const NegativeIcon := preload("res://components/magnet/negative.png")
+const PositiveIcon := preload("res://components/magnet/positive.png")
+
 export (float) var ACCELERATION = 512.0
 export (float) var MAX_MOVE_SPEED = 180.0
 export (float) var GRAVITY = 200.0
@@ -12,6 +15,23 @@ onready var MaggedNode := $Magged
 onready var RayLeft := $RayLeft
 onready var RayRight := $RayRight
 onready var RayMid := $RayMid
+onready var ChargeIcon := $ChargeIcon
+
+
+func set_charge():
+	ChargeIcon.texture = null
+	MaggedNode.CHARGE = Charge.CHARGE_TYPE.NO_CHARGE
+	
+	if Input.is_action_pressed("charge_negative") and Input.is_action_pressed("charge_positive"):
+		return
+	
+	if Input.is_action_pressed("charge_negative"):
+		ChargeIcon.texture = NegativeIcon
+		MaggedNode.CHARGE = Charge.CHARGE_TYPE.NEGATIVE_CHARGE
+		
+	if Input.is_action_pressed("charge_positive"):
+		ChargeIcon.texture = PositiveIcon
+		MaggedNode.CHARGE = Charge.CHARGE_TYPE.POSITIVE_CHARGE
 
 
 func get_input_force():
@@ -72,7 +92,7 @@ func get_mag_forces():
 		if x is Charge:
 			var dir = global_position - x.global_position
 			var dist = dir.length_squared()
-			var power = 40_000_000 / dist
+			var power = clamp(40_000_000 / dist, 0, 50_000)
 			var charge_type = x.CHARGE
 			var charge_power = power * charge_type * current_charge
 			var force = (dir / dist) * charge_power
@@ -94,6 +114,9 @@ func get_total_force():
 func _physics_process(delta):
 	if global_position.y > 200:
 		global_position = last_checkpoint
+		motion = Vector2.ZERO
+		
+	set_charge()
 	
 	var force_total = get_total_force()
 	
@@ -103,3 +126,4 @@ func _physics_process(delta):
 
 func _on_MagCollider_area_entered(area):
 	last_checkpoint = area.global_position
+	area.queue_free()
