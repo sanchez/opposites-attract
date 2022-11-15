@@ -92,7 +92,7 @@ func get_mag_forces():
 		if x is Charge:
 			var dir = global_position - x.global_position
 			var dist = dir.length_squared()
-			var power = clamp(40_000_000 / dist, 0, 50_000)
+			var power = clamp(40_000_000 / dist, 0, 50_000) * x.STRENGTH
 			var charge_type = x.CHARGE
 			var charge_power = power * charge_type * current_charge
 			var force = (dir / dist) * charge_power
