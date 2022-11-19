@@ -99,6 +99,7 @@ charge_negative={
 2d_physics/layer_1="Physic"
 2d_physics/layer_2="Magnetic"
 2d_physics/layer_3="Checkpoint"
+2d_physics/layer_4="BallLimits"
 
 [physics]
 

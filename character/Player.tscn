@@ -27,7 +27,6 @@ process_mode = 0
 smoothing_enabled = true
 
 [node name="Magged" parent="." instance=ExtResource( 3 )]
-visible = false
 CHARGE = 0
 
 [node name="CheckpointCollider" type="Area2D" parent="."]

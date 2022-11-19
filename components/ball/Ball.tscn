@@ -9,6 +9,9 @@
 script = ExtResource( 3 )
 
 [node name="Body" type="RigidBody2D" parent="."]
+collision_layer = 9
+collision_mask = 9
+can_sleep = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Body"]
 remote_path = NodePath("../../ChargeIcon")
@@ -22,5 +25,7 @@ shape = ExtResource( 1 )
 texture = ExtResource( 4 )
 
 [node name="Magged" parent="Body" instance=ExtResource( 2 )]
+
+[node name="DebugForce" type="RayCast2D" parent="Body"]
 
 [node name="ChargeIcon" type="Sprite" parent="."]
