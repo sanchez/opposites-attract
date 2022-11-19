@@ -1,12 +1,12 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 const NegativeIcon := preload("res://components/magnet/negative.png")
 const PositiveIcon := preload("res://components/magnet/positive.png")
 
-export (float) var ACCELERATION = 128.0
+export (float) var ACCELERATION = 16.0
 export (float) var MAX_MOVE_SPEED = 180.0
 export (float) var GRAVITY = 200.0
-export (float) var JUMP_FORCE = 384.0
+export (float) var JUMP_FORCE = 128.0
 
 var motion := Vector2.ZERO
 var last_checkpoint := Vector2.ZERO
@@ -39,17 +39,14 @@ func get_input_force():
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector *= ACCELERATION
 	
-#	if abs(motion.x) > MAX_MOVE_SPEED:
-#		if sign(motion.x) == sign(input_vector.x):
-#			return Vector2.ZERO
+	if abs(linear_velocity.x) > MAX_MOVE_SPEED:
+		if sign(linear_velocity.x) == sign(input_vector.x):
+			return Vector2.ZERO
 	
 	return input_vector
 
 
 func on_floor():
-	if is_on_floor():
-		return true
-		
 	if RayLeft.is_colliding() or RayRight.is_colliding() or RayMid.is_colliding():
 		return true
 		
@@ -58,6 +55,12 @@ func on_floor():
 
 var previous_jump_force = Vector2.ZERO
 func get_jump_force():
+	if on_floor():
+		if Input.is_action_just_pressed("ui_accept"):
+			return Vector2.UP * JUMP_FORCE
+	
+	return Vector2.ZERO
+	
 	if not on_floor():
 		previous_jump_force *= 0.99
 		
@@ -75,13 +78,11 @@ func get_gravity_force():
 	return Vector2.ZERO
 
 
-func get_friction_force(force: Vector2):
+func get_friction_force():
 	if on_floor():
-		if force.length_squared() < 1.5:
-			return Vector2(-motion.x, 0)
-		var x = motion.x
-		x *= -0.1
-		return Vector2(x, 0)
+		var x_force = linear_velocity.x
+		x_force *= -0.1
+		return Vector2(x_force, 0)
 	return Vector2.ZERO
 
 
@@ -93,7 +94,7 @@ func get_mag_forces():
 		if x is Charge:
 			var dir = global_position - x.global_position
 			var dist = dir.length_squared()
-			var power = clamp(40_000_000 / dist, 0, 50_000) * x.STRENGTH
+			var power = clamp(1_000_000 / dist, 0, 5_000) * x.STRENGTH
 			var charge_type = x.CHARGE
 			var charge_power = power * charge_type * current_charge
 			var force = (dir / dist) * charge_power
@@ -102,27 +103,16 @@ func get_mag_forces():
 	return force_total
 
 
-func get_total_force():
-	var forces = get_input_force()
-	forces += get_friction_force(forces)
-	forces += get_jump_force()
-	forces += get_gravity_force()
-	forces += get_mag_forces()
-	
-	return forces
-
-
 func _physics_process(delta):
 	if global_position.y > 200:
 		global_position = last_checkpoint
-		motion = Vector2.ZERO
 		
 	set_charge()
 	
-	var force_total = get_total_force()
-	
-	motion = force_total
-	motion = move_and_slide(motion, Vector2.UP, true, 4, 0.785398, true)
+	apply_central_impulse(get_input_force())
+	apply_central_impulse(get_friction_force())
+	apply_central_impulse(get_jump_force())
+	apply_central_impulse(get_mag_forces())
 
 
 func _on_MagCollider_area_entered(area):
