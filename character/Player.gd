@@ -39,7 +39,13 @@ func get_input_force():
 	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	input_vector *= ACCELERATION
 	
-	if abs(linear_velocity.x) > MAX_MOVE_SPEED:
+	var max_move_speed = MAX_MOVE_SPEED
+	
+	if not on_floor():
+		max_move_speed *= 0.3
+		input_vector *= 0.3
+	
+	if abs(linear_velocity.x) > max_move_speed:
 		if sign(linear_velocity.x) == sign(input_vector.x):
 			return Vector2.ZERO
 	
@@ -60,16 +66,6 @@ func get_jump_force():
 			return Vector2.UP * JUMP_FORCE
 	
 	return Vector2.ZERO
-	
-	if not on_floor():
-		previous_jump_force *= 0.99
-		
-	else:
-		previous_jump_force = Vector2.ZERO
-		if Input.is_action_just_pressed("ui_accept"):
-			previous_jump_force += Vector2.UP * JUMP_FORCE
-	
-	return previous_jump_force
 
 
 func get_gravity_force():
@@ -113,6 +109,15 @@ func _physics_process(delta):
 	apply_central_impulse(get_friction_force())
 	apply_central_impulse(get_jump_force())
 	apply_central_impulse(get_mag_forces())
+
+
+var previous_force = 0
+func _integrate_forces(state):
+	state.linear_velocity = state.linear_velocity.limit_length(2 * MAX_MOVE_SPEED)
+	var mag = state.linear_velocity.length()
+	if mag > previous_force:
+		print(mag)
+		previous_force = mag
 
 
 func _on_MagCollider_area_entered(area):

@@ -35,7 +35,6 @@ func get_mag_forces():
 			var charge_type = x.CHARGE
 			var charge_power = power * charge_type * current_charge
 			var force = (dir / dist) * charge_power
-			print(force)
 			force_total += force
 			
 	DebugForceNode.cast_to = force_total * 10

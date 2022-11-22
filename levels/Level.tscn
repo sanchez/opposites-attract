@@ -85,6 +85,7 @@ polygon = PoolVector2Array( -425, -585, -553, -585, -553, -297, -951, -297, -951
 
 [node name="Magnet" parent="." instance=ExtResource( 2 )]
 position = Vector2( 753, -56 )
+STRENGTH = 0.5
 
 [node name="Magnet2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 586, -188 )
@@ -162,6 +163,7 @@ position = Vector2( -760, -320 )
 
 [node name="Ball" parent="Pit" instance=ExtResource( 4 )]
 position = Vector2( -13, -118 )
+STRENGTH = 2.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Pit"]
 position = Vector2( -6, -288 )
@@ -171,3 +173,12 @@ collision_mask = 8
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pit/StaticBody2D"]
 position = Vector2( 11, 0 )
 shape = SubResource( 5 )
+
+[node name="Magnet5" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1123, -631 )
+
+[node name="Magnet6" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1271, -751 )
+
+[node name="Magnet7" parent="." instance=ExtResource( 2 )]
+position = Vector2( -79, -34 )
