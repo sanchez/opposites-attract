@@ -114,10 +114,10 @@ func _physics_process(delta):
 var previous_force = 0
 func _integrate_forces(state):
 	state.linear_velocity = state.linear_velocity.limit_length(2 * MAX_MOVE_SPEED)
-	var mag = state.linear_velocity.length()
-	if mag > previous_force:
-		print(mag)
-		previous_force = mag
+#	var mag = state.linear_velocity.length()
+#	if mag > previous_force:
+#		print(mag)
+#		previous_force = mag
 
 
 func _on_MagCollider_area_entered(area):
